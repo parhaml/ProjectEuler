@@ -1,0 +1,1 @@
+p ((1..100).inject {|sum, n| sum + n})**2 - (1..100).inject {|sum, n| (n*n) + sum}
