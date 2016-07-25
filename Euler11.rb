@@ -16,6 +16,15 @@ def make_grid(list)
 end
 
 def check_vertical(list)
+  answer = 0
+  (0..list.length-4).each do |row|
+    (0..list[row].length-1).each do |test_colum|
+      trial = list[row][test_colum] * list[row+1][test_colum] * 
+        list[row+2][test_colum] * list[row+3][test_colum]
+      answer = trial if trial > answer
+    end
+  end
+  return answer
 end
 
 def check_horizontal(list)
@@ -29,12 +38,30 @@ def check_horizontal(list)
 end
 
 def check_diagonal_right(list)
+  answer = 0
+  (0..list.length-3).each do |row|
+    (row..list[row].length-4).each do |test_colum|
+      trial = list[row][test_colum] * list[row+1][test_colum+1] * list[row+2][test_colum+2] * list[row+3][test_colum+3]
+      answer = trial if trial > answer
+    end
+  end
+  answer
 end
 
 def check_diagonal_left(list)
+  answer = 0
+  (3..list.length-1).each do |row|
+    (3..list[row].length-4).each do |test_colum|
+      trial = list[row][test_colum] * list[row-1][test_colum+1] * list[row-2][test_colum+2] * list[row-3][test_colum+3]
+      answer = trial if trial > answer
+    end
+  end
+  return answer
 end
 
 integer_list = make_integer(import_list)
 integer_grid = make_grid(integer_list)
 
-p check_horizontal(integer_grid)
+answer = [check_horizontal(integer_grid), check_vertical(integer_grid), check_diagonal_right(integer_grid), check_diagonal_left(integer_grid)].max
+
+p answer
