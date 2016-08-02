@@ -1,8 +1,6 @@
 months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 leap_months = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
-
-
 def is_leap(year)
   if year % 100 == 0
     return year % 400 == 0
@@ -10,6 +8,7 @@ def is_leap(year)
     return year % 4 == 0
   end
 end
+
 def make_total_days()
   total_days = 0
   (1901..2000).each do |year|
